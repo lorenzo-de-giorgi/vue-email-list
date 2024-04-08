@@ -14,9 +14,6 @@ createApp({
                     console.log(res.data);
                     const email = res.data.response;
                     emailList.push(email);
-                    if(i === this.numEmails - 1){
-                        this.emails = [...emailList ]
-                    }
                 })
             }
         },
