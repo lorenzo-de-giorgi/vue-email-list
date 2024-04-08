@@ -1,21 +1,27 @@
-const {createApp} = Vue;
-
+const {createApp}  = Vue;
 createApp({
     data(){
         return{
-            emails:[],
-            numEmail: 10
+            emails: [],
+            numEmails: 10
         }
     },
     methods: {
         getRandomEmail(){
-            const emailList = [];
-            for(let i = 0; i < this.numEmail; i++){
-                axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+            const emailList = []
+            for(let i = 0; i < this.numEmails; i++){
+                axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then((res)=> {
+                    console.log(res.data);
+                    const email = res.data.response;
+                    emailList.push(email);
+                    if(i === this.numEmails - 1){
+                        this.emails = [...emailList ]
+                    }
+                })
             }
-        }
+        },
     },
     mounted() {
-        
+        this.getRandomEmail()
     },
 }).mount('#app')

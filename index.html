@@ -19,7 +19,11 @@
 </head>
 <body>
     <div id="app">
-        
+        <div v-if="emails.length < 10">Non ci sono email!</div>
+        <ul>
+            <li v-for="(item, index) in emails">{{item}}</li>
+        </ul>
+        <button @click="getRandomEmail">Nuova Parola</button>
     </div>
 </body>
 </html>
